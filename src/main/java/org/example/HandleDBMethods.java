@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public interface HandlerMethods {
+public interface HandleDBMethods {
     public ArrayList<String> Select(Connection con) throws SQLException; // SELECT ALL
     public String Select(Connection con, int id) throws SQLException; // SELECT by id
     public ArrayList<String> Select(Connection con, String name) throws SQLException; // SELECT by name
@@ -15,5 +15,6 @@ public interface HandlerMethods {
     public void Update(Connection con, String column, String value, String name) throws SQLException;
     public void Delete(Connection con, int id) throws SQLException; // DELETE a row by id
     public void Delete(Connection con, String id) throws SQLException; // DELETE a row by name
-    public ArrayList<String> SelectStipendHolders(Connection con) throws SQLException; // SELECT students with schoolarship
+    public ArrayList<String> SelectStipendHolders(Connection con) throws SQLException; // SELECT students with scholarship
+    public String Analyze(Connection con, String name) throws SQLException; // Analyze a student by specific criteria
 }

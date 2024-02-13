@@ -1,6 +1,6 @@
 package org.example.handlers;
 
-import org.example.HandlerMethods;
+import org.example.HandleDBMethods;
 import org.example.models.Student;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,7 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class HandleDB implements HandlerMethods {
+public class HandleDB implements HandleDBMethods {
 
     @Override
     public ArrayList<String> Select(Connection con) throws SQLException { // SELECT ALL
@@ -165,5 +165,10 @@ public class HandleDB implements HandlerMethods {
             System.out.println("No rows found.");
             return null;
         }
+    }
+
+    @Override
+    public String Analyze(Connection con, String name) throws SQLException {
+        return null;
     }
 }
