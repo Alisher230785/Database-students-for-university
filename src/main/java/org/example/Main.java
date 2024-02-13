@@ -10,7 +10,7 @@ public class Main extends HandleIOStream{
         Connection con = null;
         try {
             Class.forName("org.postgresql.Driver");
-            con = DriverManager.getConnection(connectionString, "postgres", "Alken2006"); // creating the connection
+            con = DriverManager.getConnection(connectionString, "postgres", "qwerty"); // creating the connection
             HandleIOStream handler = new HandleIOStream();
             handler.Polling(con); // start handling the user Inputs
         } catch(SQLException e) { // Logging the exceptions

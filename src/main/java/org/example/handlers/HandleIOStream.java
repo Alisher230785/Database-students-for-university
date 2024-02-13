@@ -1,11 +1,13 @@
 package org.example.handlers;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class HandleIOStream extends HandleDB{
-    private String message = "\nChoose an action\ns - Select(int id: DEFAULT: '*')\nSelect a student field by ID (Default value - '*')\nc - Create(int id, String name, String last_name, int age, int course, double gpa)\nCreate a new student field\nu - Update(String column, String value, int id : DEFAULT = '*')\nUpdate the information about the student field based by id\nd - Delete(int id)\nDelete a student field by id\na -SelectStipendHolders()\nreturn all students that have a schoolar (GPA > 2.67)\n" ;
+    private String message = "\nChoose an action\ns - Select(int id: DEFAULT: '*')\nSelect a student field by ID (Default value - '*')\nc - Create(int id, String name, String last_name, int age, int course, double gpa)\nCreate a new student field\nu - Update(String column, String value, int id : DEFAULT = '*')\nUpdate the information about the student field based by id\nd - Delete(int id)\nDelete a student field by id\na -SelectStipendHolders()\nreturn all students that have a schoolar (GPA > 2.67)\nr - Create new students via file\n" ;
     public void Polling(Connection con) throws SQLException {
         Scanner sc = new Scanner(System.in);
         while (true) {
@@ -96,6 +98,35 @@ public class HandleIOStream extends HandleDB{
                     System.out.println(SelectStipendHolders(con));
                 } catch(java.sql.SQLException e) {
                     System.out.println("something went wrong: " + e);
+                }
+            } else if(Objects.equals(action, "r")) {
+                System.out.println("please, ensure that you have written all properties of new students in the file CREATENEW.txt");
+                System.out.println("confirm to upload?(y/n)");
+                String qw = sc.nextLine();
+                if(Objects.equals(qw, "y")) {
+                    try {
+                        File file = new File("C:\\Users\\Ali\\IdeaProjects\\Database-students-for-university\\src\\main\\java\\org\\example\\CREATENEW.txt");
+                        Scanner temp = new Scanner(file);
+                        while(temp.hasNext()) {
+                            String line = temp.nextLine();
+                            String[] parts = line.split("\\s+"); // Split the line based on whitespace
+
+                            String name = parts[0];
+                            String last_name = parts[1];
+                            int age = Integer.parseInt(parts[2]);
+                            int course = Integer.parseInt(parts[3]);
+                            double gpa = Double.parseDouble(parts[4]);
+
+                            Create(con,name,last_name,age,course,gpa);
+                            System.out.println("new students were created");
+                        }
+                    } catch(FileNotFoundException e) {
+                        System.out.println("File not found: " + e.getMessage());
+                    } catch (NumberFormatException e) {
+                        System.err.println("Error parsing numeric value in the file: " + e.getMessage());
+                    }
+                } else {
+                    System.out.println("the operation is closed");
                 }
             }
         }
