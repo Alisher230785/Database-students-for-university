@@ -46,7 +46,9 @@ public class HandleAdmin extends HandleDB {
                 System.out.println("Enter student's course");
                 int course = Integer.parseInt(sc.nextLine());
                 System.out.println("Enter student's gpa");
-                double gpa = Double.parseDouble(sc.nextLine());
+                String input = sc.nextLine();
+                input = input.replace(',', '.');
+                double gpa = Double.parseDouble(input);
                 try {
                     Create(con,name,last_name,age,course,gpa); // CREATE new student
                 } catch (java.sql.SQLException e) {

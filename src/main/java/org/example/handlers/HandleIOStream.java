@@ -44,15 +44,27 @@ public class HandleIOStream extends HandleDB{
                 int age = Integer.parseInt(sc.nextLine());
                 System.out.println("Enter student's course");
                 int course = Integer.parseInt(sc.nextLine());
+                while(course > 3 && course < 0) {
+                    System.out.println("enter a valid data");
+                    course = Integer.parseInt(sc.nextLine());
+                }
                 System.out.println("Enter student's gpa");
-                double gpa = Double.parseDouble(sc.nextLine());
+                String input = sc.nextLine();
+                input.replace(',','.');
+                double gpa = Double.parseDouble(input);
+                while(gpa > 4 && gpa < 0) {
+                    System.out.println("enter a valid data");
+                    input = sc.nextLine();
+                    input.replace(',','.');
+                    gpa = Double.parseDouble(input);
+                }
                 try {
                     Create(con,name,last_name,age,course,gpa); // CREATE new student
                 } catch (java.sql.SQLException e) {
                     System.out.println("something went wrong: " + e);
                 }
-            } else if(Objects.equals(action, "u")) { // UPDATE ALL
-                System.out.println("Enter a column");
+            } else if(Objects.equals(action, "u")) { // UPDATE
+                System.out.println("Enter a column\nname,last_name,age,course,gpa");
                 String column = sc.nextLine();
                 System.out.println("Enter a value");
                 String value = sc.nextLine();
@@ -99,7 +111,7 @@ public class HandleIOStream extends HandleDB{
                 } catch(java.sql.SQLException e) {
                     System.out.println("something went wrong: " + e);
                 }
-            } else if(Objects.equals(action, "r")) {
+            } else if(Objects.equals(action, "r")) { // Create new students from a file
                 System.out.println("please, ensure that you have written all properties of new students in the file CREATENEW.txt");
                 System.out.println("confirm to upload?(y/n)");
                 String qw = sc.nextLine();

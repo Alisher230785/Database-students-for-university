@@ -9,7 +9,7 @@ public class PostgresDB {
         Connection con = null;
         try {
             Class.forName("org.postgresql.Driver");
-            con = DriverManager.getConnection(connectionString, "postgres", "ali228sql"); // creating the connection
+            con = DriverManager.getConnection(connectionString, "postgres", "Alken2006"); // creating the connection
             return con;
         } catch(SQLException e) { // Logging the exceptions
             System.out.println("connection error: " + e.getMessage());

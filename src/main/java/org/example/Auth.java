@@ -59,7 +59,7 @@ public class Auth {
     }
 
     private static String VerifyUser(Connection con, String name, String password) throws SQLException {
-        String query = "SELECT password, priviledge FROM users WHERE name = '" + name + "' ;";
+        String query = "SELECT password, privilege FROM users WHERE name = '" + name + "' ;";
         Statement stmt = con.createStatement(); // creating a SQL statement
         ResultSet rs = stmt.executeQuery(query); // executing it
         if (rs.next()) {
