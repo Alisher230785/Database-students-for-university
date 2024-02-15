@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class HandleAdmin extends HandleDB {
-    private String message = "\nChoose an action\ns - Select(int id: DEFAULT: '*')\nSelect a student field by ID (Default value - '*')\nc - Create(int id, String name, String last_name, int age, int course, double gpa)\nCreate a new student field\nu - Update(String column, String value, int id : DEFAULT = '*')\nUpdate the information about the student field based by id\nd - Delete(int id)\nDelete a student field by id\na -SelectStipendHolders()\nreturn all students that have a schoolar (GPA > 2.67)\nr - Create new students via file\n" ;
+    private String message = "\nChoose an action\ns - Select(int id: DEFAULT: '*')\nSelect a student field by ID (Default value - '*')\nc - Create(int id, String name, String last_name, int age, int course, double gpa)\nCreate a new student field\nu - Update(String column, String value, int id : DEFAULT = '*')\nUpdate the information about the student field based by id\nd - Delete(int id)\nDelete a student field by id\na - SelectStipendHolders()\nreturn all students that have a schoolar (GPA > 2.67)\nr - Create new students via file\n" ;
     public void polling(Connection con){
         Scanner sc = new Scanner(System.in);
         while (true) {

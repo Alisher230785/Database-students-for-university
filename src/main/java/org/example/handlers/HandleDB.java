@@ -164,23 +164,6 @@ public class HandleDB implements HandleDBMethods {
             return null;
         }
     }
-    /*
-    @Override
-    public String Analyze(Connection con, String name) throws SQLException {
-        String sqlQuery = "SELECT name, gpa, RANK() OVER (ORDER BY gpa DESC) as position FROM students WHERE name = ?;";
-        PreparedStatement preparedStatement = con.prepareStatement(sqlQuery);
-        preparedStatement.setString(1, name);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        if (resultSet.next()) {
-            String Name = resultSet.getString("name").trim();
-            double gpa = resultSet.getDouble("GPA");
-            int position = resultSet.getInt("position");
-            return String.format("The position of student '%s' with GPA %.2f is: %d", Name, gpa, position);
-        } else {
-            return String.format("Student '%s' not found in the database.", name);
-        }
-    }
-    */
     @Override
     public String Analyze(Connection con, String name) throws SQLException {
         String sqlQuery = "SELECT name, gpa FROM students ORDER BY gpa DESC;";
@@ -198,3 +181,4 @@ public class HandleDB implements HandleDBMethods {
         return String.format("Student '%s' not found in the database.", name);
     }
 }
+

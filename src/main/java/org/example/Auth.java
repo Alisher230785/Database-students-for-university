@@ -16,7 +16,21 @@ public class Auth {
     public Auth(Connection con) {
         this.con = con;
     }
-    public void GetUser() {
+    public void polling() {
+        while(true) {
+            System.out.println("choose an action\na - authorisation to the system\nr - registration to the system\n");
+            String action = sc.nextLine();
+            if(Objects.equals(action, "a")) {
+                AuthoriseUser(); // authorisation
+            } else if (Objects.equals(action, "r")) {
+                IdentificateUser(); // identification
+            } else {
+                System.out.println("Please, choose an action");
+            }
+        }
+    }
+
+    public void AuthoriseUser() {
         try {
             System.out.println("Enter your name");
             String name = sc.nextLine();
@@ -40,7 +54,7 @@ public class Auth {
         }
 
     }
-    public void CreateUser() throws SQLException {
+    public void IdentificateUser() {
         try {
             System.out.println("Enter your name");
             String name = sc.nextLine();
